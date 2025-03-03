@@ -119,7 +119,7 @@ HAMBURGER MENU FOR MOBILE DEVICES
 .menu--open {
     max-height: 100vh;
     overflow-y: hidden;
-} 
+}
 
 .menu--open .menu__backdrop {
     visibility: visible;
@@ -144,8 +144,8 @@ HAMBURGER MENU FOR MOBILE DEVICES
 
 .btn__menu--close {
     position: absolute;
-    right: 20px;
-    top: 10px;
+    right: 28px;
+    top: 30px;
     padding: 8px;
     color: #fff;
 }
@@ -488,18 +488,17 @@ MOBILE ADAPTATIONS
         display: none;
     }
 
-    .btn__menu {
-        display: block;
+    main {
+        padding-top: 32px;
     }
 
-    header {
-        height: calc(88vh - 96px);
+    .btn__menu {
+        display: block;
     }
 
     .header__container {
         justify-content: center;
     }
-
 
     h1 {
         font-size: 32px;
