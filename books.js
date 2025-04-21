@@ -1,5 +1,9 @@
 
 
+const domBody = document.getElementById(`book-filter`);
+
+domBody.addEventListener(`filterSelect`, (filterSelected) => filterBooks(filterSelected));
+
 function renderBooks(bookFilter) {
   const booksWrapper = document.querySelector(`.books`);
 
@@ -12,7 +16,7 @@ function renderBooks(bookFilter) {
     books.sort((a, b) => b.salePrice - a.salePrice);
   }
   else if (bookFilter === `RATING`) {
-    books.sort((a, b) => b.rating - a.rating);
+    books.sort((a, b) => b.bookRating - a.bookRating);
   }
 
   const booksHTML = books.map((book) => {
@@ -24,11 +28,7 @@ function renderBooks(bookFilter) {
         ${book.title}
       </div>
       <div class="book__ratings">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
+        ${bookRatingsHTML(book.rating)}
       </div>
       <div class="book__price">
         <span class="book__price--normal">$${book.originalPrice.toFixed(2)}</span> $${book.salePrice.toFixed(2)}
@@ -37,6 +37,18 @@ function renderBooks(bookFilter) {
   })
   .join(``);
   booksWrapper.innerHTML = booksHTML;
+}
+
+
+function bookRatingsHTML(bookRating) {
+let bookRatingHTML = ``;
+  for (let i = 0; i < Math.floor(bookRating); ++i) {
+    bookRatingHTML += `<i class="fas fa-star"></i>`
+  }
+  if (!Number.isInteger(bookRating)) {
+    bookRatingHTML += `<i class="fas fa-star-half-alt"></i>`
+  }
+  return bookRatingHTML;
 }
 
 
