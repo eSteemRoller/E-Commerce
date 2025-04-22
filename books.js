@@ -1,6 +1,6 @@
 
 
-const domBody = document.getElementById(`book-filter`);
+// const domBody = document.getElementById(`book-filter`);
 
 
 
@@ -54,7 +54,7 @@ let bookRatingHTML = ``;
 }
 
 
-domBody.addEventListener(`onchange`, filterBooks(filterSelected));
+// domBody.addEventListener(`onchange`, filterBooks(filterSelected));
 
 function filterBooks(filterSelected) {
   renderBooks(filterSelected.target.value);
