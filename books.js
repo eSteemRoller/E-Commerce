@@ -2,7 +2,9 @@
 
 const domBody = document.getElementById(`book-filter`);
 
-domBody.addEventListener(`filterSelect`, (filterSelected) => filterBooks(filterSelected));
+
+
+// domBody.onchange => filterBooks(filterSelected);
 
 function renderBooks(bookFilter) {
   const booksWrapper = document.querySelector(`.books`);
@@ -16,7 +18,7 @@ function renderBooks(bookFilter) {
     books.sort((a, b) => b.salePrice - a.salePrice);
   }
   else if (bookFilter === `RATING`) {
-    books.sort((a, b) => b.bookRating - a.bookRating);
+    books.sort((a, b) => b.rating - a.rating);
   }
 
   const booksHTML = books.map((book) => {
@@ -40,22 +42,23 @@ function renderBooks(bookFilter) {
 }
 
 
-function bookRatingsHTML(bookRating) {
+function bookRatingsHTML(rating) {
 let bookRatingHTML = ``;
-  for (let i = 0; i < Math.floor(bookRating); ++i) {
+  for (let i = 0; i < Math.floor(rating); ++i) {
     bookRatingHTML += `<i class="fas fa-star"></i>`
   }
-  if (!Number.isInteger(bookRating)) {
+  if (!Number.isInteger(rating)) {
     bookRatingHTML += `<i class="fas fa-star-half-alt"></i>`
   }
   return bookRatingHTML;
 }
 
 
+domBody.addEventListener(`onchange`, filterBooks(filterSelected));
+
 function filterBooks(filterSelected) {
   renderBooks(filterSelected.target.value);
 }
-
 
 
 renderBooks();

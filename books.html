@@ -54,8 +54,8 @@
               All <span class="purple">Books</span>
             </h2>
             <!--  onchange="filterBooks(filterSelected)" -->
-            <select id="book-filter">
-              <option value="" selected>Sort/Default</option>
+            <select id="book-filter" onchange="filterBooks()">
+              <option value="" null selected>Sort/Default</option>
               <option value="LOW_TO_HIGH">Price, Low to High</option>
               <option value="HIGH_TO_LOW">Price, High to Low</option>
               <option value="RATING">Rating</option>
