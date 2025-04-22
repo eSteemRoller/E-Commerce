@@ -12,10 +12,10 @@ function renderBooks(bookFilter) {
   const books = getBooks();
 
   if (bookFilter === `LOW_TO_HIGH`) {
-    books.sort((a, b) => a.salePrice - b.salePrice);
+    books.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || a.originalPrice));
   }
   else if (bookFilter === `HIGH_TO_LOW`) {
-    books.sort((a, b) => b.salePrice - a.salePrice);
+    books.sort((a, b) => (b.salePrice || b.originalPrice) - (a.salePrice || a.originalPrice));
   }
   else if (bookFilter === `RATING`) {
     books.sort((a, b) => b.rating - a.rating);
@@ -33,12 +33,19 @@ function renderBooks(bookFilter) {
         ${bookRatingsHTML(book.rating)}
       </div>
       <div class="book__price">
-        <span class="book__price--normal">$${book.originalPrice.toFixed(2)}</span> $${book.salePrice.toFixed(2)}
+        ${priceHTML(book.originalPrice, book.salePrice)}
       </div>
     </div>`;
   })
   .join(``);
   booksWrapper.innerHTML = booksHTML;
+}
+
+function priceHTML(originalPrice, salePrice) {
+  if (!salePrice) {
+    return `$${originalPrice.toFixed(2)}`;
+  }
+  return `<span class="book__price--normal">$${originalPrice.toFixed(2)}</span>  <span b class="purple__text">On sale for $${salePrice.toFixed(2)}!</span>`;
 }
 
 
@@ -80,7 +87,7 @@ function getBooks() {
       title: "Atomic Habits",
       url: "./assets/atomic habits.jpg",
       originalPrice: 39,
-      salePrice: 39,
+      salePrice: null,
       rating: 5,
     },
     {
@@ -136,7 +143,7 @@ function getBooks() {
       title: "The 5 Second Rule",
       url: "./assets/book-6.jpeg",
       originalPrice: 35,
-      salePrice: 35,
+      salePrice: null,
       rating: 4,
     },
     {
@@ -144,7 +151,7 @@ function getBooks() {
       title: "Your Next Five Moves",
       url: "./assets/book-7.jpg",
       originalPrice: 40,
-      salePrice: 40,
+      salePrice: null,
       rating: 4,
     },
     {
@@ -152,7 +159,7 @@ function getBooks() {
       title: "Mastery",
       url: "./assets/book-8.jpeg",
       originalPrice: 30,
-      salePrice: 30,
+      salePrice: null,
       rating: 4.5,
     },
   ];
