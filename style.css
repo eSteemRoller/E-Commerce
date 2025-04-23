@@ -491,6 +491,14 @@ BOOKS PAGE
     font-size: 60px;
     color: #7342d6;
   }
+
+  .books__loading--spinner {
+    display: none;
+  }
+
+  .books__loading .books__loading--spinner {
+    display: block;
+  }
   
   .fa-spinner {
     animation: rotate 600ms infinite linear;
